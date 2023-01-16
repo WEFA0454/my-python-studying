@@ -1,0 +1,94 @@
+#Iteration example 迭代iteration
+#the fibonacci sequence
+def fib(x):
+    Pre,Curr=1,0#start with 0 0th 1 11th 1 2th 2 3th 3 4th 5 5th
+    k=0 #the kth Fibonacci number is Curr
+    while k<x:
+       Pre,Curr=Curr,Pre+Curr
+       k+=1
+    return Curr
+
+#Designing Functions
+'''A function's domain is the set of all inputs it might 
+possibly take as arguments.
+   A function's range is the set of output values it might
+   possibly return.
+   A pure function's behavior is the relationship it creates
+   between input and output'''
+#higher order function
+#Generalizing over computational processes
+
+"""Genearalization"""
+def identity(k):
+   return k
+def cube(k):
+   return pow(k,3)
+def summation(n,term):
+   """sum the first N terms of a sequence.
+   >>>summation(5,cube)
+   225
+   """
+   total,k=0,1
+   while k<=n:
+      total,k=total+term(k),k+1
+   return total
+
+def sum_naturals(n):
+   """Sum the first N natural numbers.
+   >>>sum_naturals(5)
+   15
+   """
+   return summation(n,identity)
+
+def sum_cubes(n):
+   return summation(n,cube)
+
+print(sum_naturals(5),
+      sum_cubes(5))
+
+#return a function as a value
+def make_adder(n):
+   """"Return a function
+   >>>add_three=make_adder(3)
+   >>>add_three(4)
+   7
+   """
+   def adder(k):
+      return k+n
+   return adder
+add_three=make_adder(3)
+print(add_three(4))
+print(make_adder(3)(4))
+
+def search(f):
+   x=0
+   while True:
+      if f(x):
+         return x
+      x=x+1
+      
+def is_three(x):
+   """if x==3,this fuction will return TRUE
+      else x != 3, this fuction will return FALSE
+      """
+   return x==3
+print(search(is_three))#reslut is 3
+print(is_three(1))#False
+
+def square(x):
+   return x**2
+
+def positive(x):
+   return max(0,square(x)-100)
+
+print(search(positive))
+
+def inverse(f):
+   '''''!!!!!! use python tutor'''
+   """ Return g(y) such that g(f(x))--> x."""
+   return lambda y:search(lambda x:f(x)==y)
+# return lambda y:search(lambda x:square(x)==y)
+sqrt=inverse(square)
+print(sqrt(256),square(16),inverse(square)(256))
+
+#Control -- nclude while statements and if statements
