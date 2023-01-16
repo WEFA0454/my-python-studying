@@ -1,0 +1,190 @@
+# A function that does not explicitly return a value will return None
+# None is not displayed by the interpreter as the value of an expression
+print(print(1),print(2))
+# Multiple Environments
+#python可以返回多个值
+def divide_exact(n,d):
+    return n//d,n%d
+quotient,remainder=divide_exact(2013,10)
+print(quotient,remainder)
+#Conditional Statements
+def absolute_value(x):
+    """Return the absolute value of x"""
+    #''' '''或者""" """，将要注释的代码插在中间，也可实现注释多行代码的效果
+    if x<0:
+        return -x
+    elif x==0:
+        return 0
+    else:
+        return x
+print(absolute_value(-2))
+# False values in Python:
+# False,0,'',None
+# True values in Python:
+# Anything else (True)
+
+#Iteration (repeating)
+i,total=0,0
+while i<3:
+    i+=1
+    total+=i
+    print(i,total)
+    
+#Prime Factorization--质数分解
+def prime_factors(n):
+    """Print the prime factors of n in non-decreasing order
+    >>>prime_factors(8)
+    2
+    2
+    2
+    >>>prime_factors(9)
+    3
+    3
+    >>>prime_factors(10)
+    2
+    5
+    >>>prime_factors(11)
+    11
+    >>>prime_factors(858)
+    2
+    3
+    11
+    13
+    """
+    while n>1:
+        k=smallest_prime_factor(n)
+        n=n//k
+        print(k)
+def smallest_prime_factor(n):
+    """"Return the smallest k>1 that evenly divides n."""
+    k=2
+    while n%k!=0:
+        k+=1
+    return k
+
+prime_factors(9)
+print("\n\n")
+#hw01
+#Q4:Largest Factor
+print("Q4:Largest Factor")
+def largest_factor(x):
+    """Return the largest factor of x that is smaller than x.
+
+    >>> largest_factor(15) # factors are 1, 3, 5
+    5
+    >>> largest_factor(80) # factors are 1, 2, 4, 5, 8, 10, 16, 20, 40
+    40
+    >>> largest_factor(13) # factor is 1 since 13 is prime
+    1
+    """
+    k=large(x)
+    print(k)
+
+def large(x):
+    k=x-1
+    while x%k!=0:
+       k-=1
+    return k
+print("the largest factor of 15:")
+largest_factor(15)
+print("the largest factor of 80:")   
+largest_factor(80)
+print("the largest factor of 13:")
+largest_factor(13)    
+
+print("\n\n")
+#Q5 if function vs statement 
+print("Q5: If Function vs Statement")
+
+print("\n\n")
+#Q6: Hailstone
+def hailstone(x):
+    """Print the hailstone sequence starting at x and return its
+    length.
+
+    >>> a = hailstone(10)
+    10
+    5
+    16
+    8
+    4
+    2
+    1
+    >>> a
+    7
+    """
+    print(x)
+    while x>1:
+        if x%2==0:
+            x=x/2
+            print(int(x))
+        else:
+            x=x*3+1
+            print(int(x))
+    print("\n")
+
+hailstone(10)
+hailstone(7)
+
+#hw02
+#Q1: Product
+def product(n, term):
+    """Return the product of the first n terms in a sequence.
+    n -- a positive integer
+    term -- a function that takes one argument to produce the term
+
+    >>> product(3, identity)  # 1 * 2 * 3
+    6
+    >>> product(5, identity)  # 1 * 2 * 3 * 4 * 5
+    120
+    >>> product(3, square)    # 1^2 * 2^2 * 3^2
+    36
+    >>> product(5, square)    # 1^2 * 2^2 * 3^2 * 4^2 * 5^2
+    14400
+    >>> product(3, increment) # (1+1) * (2+1) * (3+1)
+    24
+    >>> product(3, triple)    # 1*3 * 2*3 * 3*3
+    162
+    """
+    if term is 'identity':
+        sum=1
+        while n>=1:
+            sum=sum*n
+            n-=1
+        print(sum)
+    elif term is 'square':
+        sum=1
+        while n>=1:
+            sum=sum*n*n
+            n-=1
+        print(sum)
+    elif term is 'increment':
+        sum=1
+        while n>=1:
+            sum=sum*(n+1)
+            n-=1
+        print(sum)
+    elif term is 'triple':
+        sum=1
+        while n>=1:
+            sum=sum*n*3
+            n-=1
+        print(sum)
+        
+product(3, 'identity')
+product(3, 'square') 
+product(3, 'increment')
+product(3, 'triple') 
+
+# from math import identity,square,increment,triple
+# def produce(m, term):
+#     total,k=1,1
+#     while k<m:
+#         total=total*term(k)
+#     return total
+
+# print(produce(3,identity)
+#       ,produce(3,square)
+#       ,produce(3,increment)
+#       ,produce(3,triple)) 
+
